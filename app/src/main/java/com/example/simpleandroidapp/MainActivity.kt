@@ -10,12 +10,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        NavigationUI.setupActionBarWithNavController(this, findNavController(R.id.main_nav_fragment))
-        setupBottomNavMenu(findNavController(R.id.main_nav_fragment))
+        navController = findNavController(R.id.main_nav_fragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+        setupBottomNavMenu(navController)
     }
 
     private fun setupBottomNavMenu(findNavController: NavController) {
@@ -23,6 +26,6 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(findNavController)
     }
 
-    override fun onSupportNavigateUp() = findNavController(R.id.main_nav_fragment).navigateUp()
+    override fun onSupportNavigateUp() = navController.navigateUp()
 
 }
