@@ -23,4 +23,6 @@ class MainActivity : AppCompatActivity() {
         bottomNav.setupWithNavController(findNavController)
     }
 
+    override fun onSupportNavigateUp() = findNavController(R.id.main_nav_fragment).navigateUp()
+
 }
