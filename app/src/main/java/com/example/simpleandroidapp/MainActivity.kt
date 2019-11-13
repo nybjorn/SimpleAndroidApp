@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Stetho.initializeWithDefaults(this)
+
         setContentView(R.layout.main_activity)
 
         navController = findNavController(R.id.main_nav_fragment)
