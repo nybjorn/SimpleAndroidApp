@@ -7,7 +7,6 @@ import timber.log.Timber
 import android.util.Log
 
 
-
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -28,13 +27,13 @@ class App : Application() {
                 return
             }
 
-            Log.e("FAKE_LOG", String.format("%d %s %s", priority, tag, message))
+            Log.e("FAKE_LOG", "$(priority) $(tag) $(message)")
 
             if (t != null) {
                 if (priority == Log.ERROR) {
-                    Log.e("FAKE_LOG", String.format("%d %s %s", priority, tag, message), t)
+                    Log.e("FAKE_LOG", "$(priority) $(tag) $(message)", t)
                 } else if (priority == Log.WARN) {
-                    Log.w("FAKE_LOG", String.format("%d %s %s", priority, tag, message), t)
+                    Log.w("FAKE_LOG", "$(priority) $(tag) $(message)", t)
                 }
             }
         }
