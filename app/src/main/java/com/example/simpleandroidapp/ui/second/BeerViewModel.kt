@@ -14,6 +14,7 @@ class BeerViewModel : ViewModel() {
 
 
     fun fetchBeers() {
+        beers.value = RepositoryResult.loading()
         viewModelScope.launch {
             beers.value = beerRepository.fetchBeers()
         }

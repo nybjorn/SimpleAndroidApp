@@ -46,7 +46,9 @@ class SecondFragment : Fragment() {
                     beer_list.adapter = adapter
                 } else if ( it is RepositoryResult.error) {
                     Snackbar.make(view, R.string.no_beer, Snackbar.LENGTH_LONG).show()
-                }
+                } else {
+                    Snackbar.make(view, R.string.worth_waiting_for, Snackbar.LENGTH_LONG).show()
+            }
         })
 
     }
