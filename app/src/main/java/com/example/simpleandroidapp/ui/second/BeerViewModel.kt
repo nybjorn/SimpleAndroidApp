@@ -19,6 +19,6 @@ class BeerViewModel : ViewModel() {
     }
 
     fun getBeers(): MutableLiveData<List<Beer>> {
-        return beers;
+        return beers
     }
 }
