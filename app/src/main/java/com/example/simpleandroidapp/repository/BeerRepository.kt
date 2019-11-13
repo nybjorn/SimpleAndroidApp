@@ -2,9 +2,11 @@ package com.example.simpleandroidapp.repository
 
 import com.example.simpleandroidapp.net.BeerFetcherNet
 import com.example.simpleandroidapp.repository.pojo.Beer
+import kotlinx.coroutines.delay
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
+import kotlin.random.Random
 
 class BeerRepository {
 
@@ -18,11 +20,12 @@ class BeerRepository {
     }
 
     // https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter/issues/3
-    suspend fun fetchBeers(): List<Beer> {
+    suspend fun fetchBeers(): RepositoryResult<List<Beer>> {
         return try {
-            webservice.fetchBeers()
+            delay(Random(4711).nextLong(1000, 3000))
+            RepositoryResult.success(webservice.fetchBeers())
         } catch (e : Exception) {
-            emptyList()
+            RepositoryResult.error(e.message.toString())
         }
     }
 }

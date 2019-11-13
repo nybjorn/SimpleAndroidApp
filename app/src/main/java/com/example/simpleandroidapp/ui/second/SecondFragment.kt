@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.repository.pojo.Beer
 import android.widget.ArrayAdapter
+import com.example.simpleandroidapp.repository.RepositoryResult
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_second.*
 
 
@@ -29,19 +31,22 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(BeerViewModel::class.java)
-
         viewModel.fetchBeers()
 
-        viewModel.getBeers().observe(this, Observer<List<Beer>> {
-            val arrayOf = it.map { it.name }
-            val adapter = ArrayAdapter(
-                context!!,
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                arrayOf
-            )
+        viewModel.getBeers().observe(this, Observer<RepositoryResult<List<Beer>>> {
+            if (it is RepositoryResult.success) {
+                    val arrayOf = it.data.map { it.name }
+                    val adapter = ArrayAdapter(
+                        context!!,
+                        android.R.layout.simple_list_item_1,
+                        android.R.id.text1,
+                        arrayOf
+                    )
 
-            beer_list.adapter = adapter
+                    beer_list.adapter = adapter
+                } else if ( it is RepositoryResult.error) {
+                    Snackbar.make(view, R.string.no_beer, Snackbar.LENGTH_LONG).show()
+                }
         })
 
     }
