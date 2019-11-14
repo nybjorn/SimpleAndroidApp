@@ -35,6 +35,7 @@ class SecondFragment : Fragment() {
 
         viewModel.getBeers().observe(this, Observer<RepositoryResult<List<Beer>>> {
             if (it is RepositoryResult.success) {
+                    beer_progress.visibility = View.GONE
                     val arrayOf = it.data.map { it.name }
                     val adapter = ArrayAdapter(
                         context!!,
@@ -45,8 +46,10 @@ class SecondFragment : Fragment() {
 
                     beer_list.adapter = adapter
                 } else if ( it is RepositoryResult.error) {
+                    beer_progress.visibility = View.GONE
                     Snackbar.make(view, R.string.no_beer, Snackbar.LENGTH_LONG).show()
                 } else {
+                    beer_progress.visibility = View.VISIBLE
                     Snackbar.make(view, R.string.worth_waiting_for, Snackbar.LENGTH_LONG).show()
             }
         })
