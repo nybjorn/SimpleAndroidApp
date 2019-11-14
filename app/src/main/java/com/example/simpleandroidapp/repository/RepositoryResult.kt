@@ -5,5 +5,6 @@ package com.example.simpleandroidapp.repository
 sealed class RepositoryResult<out T> {
     class loading<T> : RepositoryResult<T>()
     data class error<T>(val message: String) : RepositoryResult<T>()
+    data class intermediateError<T>(val message: String): RepositoryResult<T>()
     data class success<T>(val data: T) : RepositoryResult<T>()
 }
