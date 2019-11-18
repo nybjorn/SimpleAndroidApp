@@ -7,5 +7,4 @@ interface BeerFetcherNet {
 
     @GET("v2/beers")
     suspend fun fetchBeers(): List<Beer>
-
 }

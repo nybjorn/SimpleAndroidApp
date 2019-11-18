@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.repository.pojo.Beer
 import android.widget.ArrayAdapter
@@ -15,13 +14,13 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_second.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class SecondFragment : Fragment() {
 
     private val viewModel: BeerViewModel by viewModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -35,7 +34,7 @@ class SecondFragment : Fragment() {
 
         viewModel.getBeers().observe(this, Observer<RepositoryResult<List<Beer>>> {
             when (it) {
-                is RepositoryResult.success -> {
+                is RepositoryResult.Success -> {
                     beer_progress.visibility = View.GONE
                     val arrayOf = it.data.map { it.name }
                     val adapter = ArrayAdapter(
@@ -47,7 +46,7 @@ class SecondFragment : Fragment() {
 
                     beer_list.adapter = adapter
                 }
-                is RepositoryResult.error -> {
+                is RepositoryResult.Error -> {
                     beer_progress.visibility = View.GONE
                     Snackbar.make(view, R.string.no_beer, Snackbar.LENGTH_LONG).show()
                 }
@@ -57,6 +56,5 @@ class SecondFragment : Fragment() {
                 }
             }
         })
-
     }
 }

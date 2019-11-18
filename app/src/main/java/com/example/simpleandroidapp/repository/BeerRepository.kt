@@ -4,13 +4,12 @@ import com.example.simpleandroidapp.net.BeerFetcherNet
 import com.example.simpleandroidapp.repository.pojo.Beer
 import kotlinx.coroutines.delay
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 import kotlin.random.Random
 
 val beerModule = module { factory { BeerRepository(get()) } }
 
+@Suppress("MagicNumber")
 class BeerRepository(private val beerWebService: BeerFetcherNet) {
     /*
     val BASE_URL = "https://api.punkapi.com/"
@@ -22,14 +21,18 @@ class BeerRepository(private val beerWebService: BeerFetcherNet) {
             .build().create(BeerFetcherNet::class.java)
     }*/
 
+    private val randomSeed = 4711
+    private val minResponseDelay = 1000L
+    private val maxResponseDelay = 3000L
 
     // https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter/issues/3
+    @Suppress("TooGenericExceptionCaught")
     suspend fun fetchBeers(): RepositoryResult<List<Beer>> {
         return try {
-            delay(Random(4711).nextLong(1000, 3000))
-            RepositoryResult.success(beerWebService.fetchBeers())
+            delay(Random(randomSeed).nextLong(minResponseDelay, maxResponseDelay))
+            RepositoryResult.Success(beerWebService.fetchBeers())
         } catch (e: Exception) {
-            RepositoryResult.error(e.message.toString())
+            RepositoryResult.Error(e.message.toString())
         }
     }
 }

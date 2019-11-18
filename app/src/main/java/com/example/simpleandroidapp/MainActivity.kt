@@ -27,5 +27,4 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()
-
 }

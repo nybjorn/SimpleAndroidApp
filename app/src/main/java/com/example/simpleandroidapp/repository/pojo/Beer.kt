@@ -55,5 +55,4 @@ class Beer {
     @SerializedName("contributed_by")
     @Expose
     private val contributedBy: String? = null
-
 }

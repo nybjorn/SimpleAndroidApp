@@ -9,7 +9,6 @@ import com.example.simpleandroidapp.repository.pojo.Beer
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
 
-
 val beerViewModule = module {
     factory { BeerViewModel(get()) }
 }
@@ -17,9 +16,8 @@ val beerViewModule = module {
 class BeerViewModel(val beerRepository: BeerRepository) : ViewModel() {
     private val beers = MutableLiveData<RepositoryResult<List<Beer>>>()
 
-
     fun fetchBeers() {
-        beers.value = RepositoryResult.loading()
+        beers.value = RepositoryResult.Loading()
         viewModelScope.launch {
             beers.value = beerRepository.fetchBeers()
         }
