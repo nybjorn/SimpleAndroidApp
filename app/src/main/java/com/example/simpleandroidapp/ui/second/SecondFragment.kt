@@ -13,11 +13,12 @@ import android.widget.ArrayAdapter
 import com.example.simpleandroidapp.repository.RepositoryResult
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_second.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SecondFragment : Fragment() {
 
-    private lateinit var viewModel: BeerViewModel
+    private val viewModel: BeerViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,11 +31,11 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(BeerViewModel::class.java)
         viewModel.fetchBeers()
 
         viewModel.getBeers().observe(this, Observer<RepositoryResult<List<Beer>>> {
-            if (it is RepositoryResult.success) {
+            when (it) {
+                is RepositoryResult.success -> {
                     beer_progress.visibility = View.GONE
                     val arrayOf = it.data.map { it.name }
                     val adapter = ArrayAdapter(
@@ -45,12 +46,15 @@ class SecondFragment : Fragment() {
                     )
 
                     beer_list.adapter = adapter
-                } else if ( it is RepositoryResult.error) {
+                }
+                is RepositoryResult.error -> {
                     beer_progress.visibility = View.GONE
                     Snackbar.make(view, R.string.no_beer, Snackbar.LENGTH_LONG).show()
-                } else {
+                }
+                else -> {
                     beer_progress.visibility = View.VISIBLE
                     Snackbar.make(view, R.string.worth_waiting_for, Snackbar.LENGTH_LONG).show()
+                }
             }
         })
 
