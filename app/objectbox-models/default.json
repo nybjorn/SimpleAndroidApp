@@ -1,0 +1,120 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:1829093495880946994",
+      "lastPropertyId": "17:1542736866501576865",
+      "name": "Beer",
+      "properties": [
+        {
+          "id": "1:3782385220992210739",
+          "name": "id",
+          "type": 6,
+          "flags": 131
+        },
+        {
+          "id": "2:763070309358204902",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:280474377806894370",
+          "name": "tagline",
+          "type": 9
+        },
+        {
+          "id": "4:14344394826951609",
+          "name": "firstBrewed",
+          "type": 9
+        },
+        {
+          "id": "5:229199496321311328",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "6:5726235101115140915",
+          "name": "imageUrl",
+          "type": 9
+        },
+        {
+          "id": "7:4719399511988735026",
+          "name": "abv",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "8:1493220886438944605",
+          "name": "ibu",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "9:7147824450633798406",
+          "name": "targetFg",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "10:4586037153361616605",
+          "name": "targetOg",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "11:1303146498505988001",
+          "name": "ebc",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "12:1762942584057636492",
+          "name": "srm",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "13:7009030204702451867",
+          "name": "ph",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "14:8930250834873248931",
+          "name": "attenuationLevel",
+          "type": 8,
+          "flags": 2
+        },
+        {
+          "id": "15:8501521096958645494",
+          "name": "brewersTips",
+          "type": 9
+        },
+        {
+          "id": "16:8855605548229685892",
+          "name": "contributedBy",
+          "type": 9
+        },
+        {
+          "id": "17:1542736866501576865",
+          "name": "foodPairing",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:1829093495880946994",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

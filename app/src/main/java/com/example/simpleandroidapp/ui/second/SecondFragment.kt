@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import com.example.simpleandroidapp.R
-import com.example.simpleandroidapp.repository.pojo.Beer
 import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.repository.RepositoryResult
+import com.example.simpleandroidapp.repository.pojo.Beer
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_second.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.random.Random
 
 class SecondFragment : Fragment() {
 
@@ -33,33 +34,55 @@ class SecondFragment : Fragment() {
 
         viewModel.fetchBeers()
 
-        viewModel.getBeers().observe(this, Observer<RepositoryResult<List<Beer>>> {
-            when (it) {
-                is RepositoryResult.Success -> {
-                    beer_progress.visibility = View.GONE
-                    val arrayOf = it.data.map { it.name }
-                    val adapter = ArrayAdapter(
-                        context!!,
-                        android.R.layout.simple_list_item_1,
-                        android.R.id.text1,
-                        arrayOf
-                    )
+        if (Random.nextBoolean()) {
+            viewModel.fetchBeerLiveData().observe(this, Observer<List<Beer>>() {
+                val arrayOf = it.map { it.name }
+                beer_progress.visibility = View.GONE
+                val adapter = ArrayAdapter(
+                    context!!,
+                    android.R.layout.simple_list_item_1,
+                    android.R.id.text1,
+                    arrayOf
+                )
 
-                    beer_list.adapter = adapter
-                    beer_list.setOnItemClickListener { _, view, position, _ ->
-                        val toThirdFragment =
-                            SecondFragmentDirections.actionSecondFragmentToThirdFragment(it.data[position])
-                        view.findNavController().navigate(toThirdFragment) }
+                beer_list.adapter = adapter
+                beer_list.setOnItemClickListener { _, view, position, _ ->
+                    val toThirdFragment =
+                        SecondFragmentDirections.actionSecondFragmentToThirdFragment(it[position])
+                    view.findNavController().navigate(toThirdFragment)
                 }
-                is RepositoryResult.Error -> {
-                    beer_progress.visibility = View.GONE
-                    Snackbar.make(view, R.string.no_beer, Snackbar.LENGTH_LONG).show()
+            })
+        } else {
+
+            viewModel.getBeers().observe(this, Observer<RepositoryResult<List<Beer>>> {
+                when (it) {
+                    is RepositoryResult.Success -> {
+                        beer_progress.visibility = View.GONE
+                        val arrayOf = it.data.map { it.name }
+                        val adapter = ArrayAdapter(
+                            context!!,
+                            android.R.layout.simple_list_item_1,
+                            android.R.id.text1,
+                            arrayOf
+                        )
+
+                        beer_list.adapter = adapter
+                        beer_list.setOnItemClickListener { _, view, position, _ ->
+                            val toThirdFragment =
+                                SecondFragmentDirections.actionSecondFragmentToThirdFragment(it.data[position])
+                            view.findNavController().navigate(toThirdFragment)
+                        }
+                    }
+                    is RepositoryResult.Error -> {
+                        beer_progress.visibility = View.GONE
+                        Snackbar.make(view, R.string.no_beer, Snackbar.LENGTH_LONG).show()
+                    }
+                    else -> {
+                        beer_progress.visibility = View.VISIBLE
+                        Snackbar.make(view, R.string.worth_waiting_for, Snackbar.LENGTH_LONG).show()
+                    }
                 }
-                else -> {
-                    beer_progress.visibility = View.VISIBLE
-                    Snackbar.make(view, R.string.worth_waiting_for, Snackbar.LENGTH_LONG).show()
-                }
-            }
-        })
+            })
+        }
     }
 }

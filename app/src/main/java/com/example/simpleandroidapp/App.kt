@@ -7,6 +7,7 @@ import timber.log.Timber
 import android.util.Log
 import com.example.simpleandroidapp.net.networkModule
 import com.example.simpleandroidapp.repository.beerModule
+import com.example.simpleandroidapp.repository.dao.boxModule
 import com.example.simpleandroidapp.ui.second.beerViewModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,6 +22,7 @@ class App : Application() {
             androidContext(this@App)
             modules(listOf(
                 networkModule,
+                boxModule,
                 beerModule,
                 beerViewModule))
         }

@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
+apply plugin: 'kotlin-kapt' // For Kotlin, explicitly apply the kapt plugin (apply plugin: 'kotlin-kapt') before the ObjectBox plugin.
+apply plugin: 'io.objectbox' // Apply last.
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -17,6 +20,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BEER_API_URL", "\"https://api.punkapi.com/\"")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -52,6 +60,9 @@ dependencies {
     implementation "org.koin:koin-android:2.0.1"
     implementation "org.koin:koin-androidx-viewmodel:2.0.1"
     implementation "org.koin:koin-core:2.0.1"
+
+    // ObjectBox
+    implementation "io.objectbox:objectbox-kotlin:2.4.1"
 
 
     testImplementation 'junit:junit:4.12'
