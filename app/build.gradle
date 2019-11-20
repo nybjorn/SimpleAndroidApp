@@ -64,6 +64,9 @@ dependencies {
     // ObjectBox
     implementation "io.objectbox:objectbox-kotlin:2.4.1"
 
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

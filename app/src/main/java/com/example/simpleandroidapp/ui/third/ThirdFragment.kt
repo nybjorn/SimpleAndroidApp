@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
+import com.example.simpleandroidapp.MainActivity
 import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.repository.pojo.Beer
 import kotlinx.android.synthetic.main.fragment_third.*
@@ -38,6 +42,19 @@ class ThirdFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        one_beer_title.text = beer.name
+        Navigation.findNavController(view).currentDestination?.let {
+            it.label = beer.name
+        }
+        beer.foodPairing?.let {
+            one_beer_title.text = it.joinToString(separator = "\n") { food -> "* $food" }
+        }
+
+        if(beer.imageUrl.isNullOrEmpty()) {
+            beer_image.visibility = View.GONE
+        } else {
+            Glide.with(view).load(beer.imageUrl).into(beer_image)
+        }
     }
 }
+
+

@@ -5,3 +5,4 @@
 * Coroutines vs RxKotlin
 * Detekt
 * ObjectBox vs Room (SQLlite)
+* Glide vs Picasso
