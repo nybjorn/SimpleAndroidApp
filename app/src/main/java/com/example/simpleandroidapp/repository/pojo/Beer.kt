@@ -1,9 +1,12 @@
 package com.example.simpleandroidapp.repository.pojo
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-class Beer {
+@Parcelize
+class Beer : Parcelable {
     @SerializedName("id")
     @Expose
     private val id: Int? = null

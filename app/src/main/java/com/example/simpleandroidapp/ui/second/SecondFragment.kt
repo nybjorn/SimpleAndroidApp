@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.repository.pojo.Beer
 import android.widget.ArrayAdapter
+import androidx.navigation.findNavController
 import com.example.simpleandroidapp.repository.RepositoryResult
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_second.*
@@ -45,6 +46,10 @@ class SecondFragment : Fragment() {
                     )
 
                     beer_list.adapter = adapter
+                    beer_list.setOnItemClickListener { _, view, position, _ ->
+                        val toThirdFragment =
+                            SecondFragmentDirections.actionSecondFragmentToThirdFragment(it.data[position])
+                        view.findNavController().navigate(toThirdFragment) }
                 }
                 is RepositoryResult.Error -> {
                     beer_progress.visibility = View.GONE
