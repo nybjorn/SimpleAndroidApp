@@ -6,3 +6,4 @@
 * Detekt
 * ObjectBox vs Room (SQLlite)
 * Glide vs Picasso
+* Renderscript, OpenCL, Vulkan
