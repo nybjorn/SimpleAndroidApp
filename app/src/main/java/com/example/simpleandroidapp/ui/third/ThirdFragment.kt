@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
 import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.repository.pojo.Beer
+import com.example.simpleandroidapp.util.GlideApp
 import kotlinx.android.synthetic.main.fragment_third.*
 
 class ThirdFragment : Fragment() {
@@ -42,7 +42,7 @@ class ThirdFragment : Fragment() {
         if (beer.imageUrl.isNullOrEmpty()) {
             beer_image.visibility = View.GONE
         } else {
-            Glide.with(view).load(beer.imageUrl).into(beer_image)
+            GlideApp.with(view).load(beer.imageUrl).into(beer_image)
         }
     }
 }
