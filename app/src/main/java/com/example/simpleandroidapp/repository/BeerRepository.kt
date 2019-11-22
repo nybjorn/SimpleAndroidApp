@@ -3,6 +3,7 @@ package com.example.simpleandroidapp.repository
 import com.example.simpleandroidapp.net.BeerFetcherNet
 import com.example.simpleandroidapp.repository.pojo.Beer
 import io.objectbox.Box
+import io.objectbox.BoxStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -14,7 +15,7 @@ import kotlin.random.Random
 val beerModule = module { factory { BeerRepository(get(), get()) } }
 
 @Suppress("MagicNumber")
-class BeerRepository(private val beerWebService: BeerFetcherNet, val objectBox: Box<Beer>) {
+class BeerRepository(private val beerWebService: BeerFetcherNet, val objectBox: BoxStore) {
     /*
     val BASE_URL = "https://api.punkapi.com/"
 
@@ -46,8 +47,8 @@ class BeerRepository(private val beerWebService: BeerFetcherNet, val objectBox: 
 
     private fun saveToDatabase(data: List<Beer>) {
         CoroutineScope(Dispatchers.IO).launch {
-            objectBox.removeAll() // deleting and inserting data to avoid sync issues
-            objectBox.put(data)
+            objectBox.boxFor(Beer::class.java).removeAll() // deleting and inserting data to avoid sync issues
+            objectBox.boxFor(Beer::class.java).put(data)
         }
     }
 }
