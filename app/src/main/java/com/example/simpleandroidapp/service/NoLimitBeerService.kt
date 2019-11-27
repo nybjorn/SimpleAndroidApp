@@ -155,7 +155,7 @@ class NoLimitBeerService : Service() {
             .setContentTitle(getString(R.string.app_name))
             .setContentText(beersOnTheWall)
             .setContentIntent(pendingIntent)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ic_beer)
             .setTicker(beersOnTheWall)
 
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O) {
