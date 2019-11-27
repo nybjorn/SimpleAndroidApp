@@ -36,7 +36,7 @@ class FirstFragment : Fragment() {
     }
 
     override fun onStop() {
-        super.onStart()
+        super.onStop()
         EventBus.getDefault().unregister(this)
     }
 
