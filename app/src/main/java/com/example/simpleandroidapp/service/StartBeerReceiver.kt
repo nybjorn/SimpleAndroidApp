@@ -6,8 +6,7 @@ import android.content.Intent
 import android.os.Build
 import timber.log.Timber
 
-class StartBeerReciever : BroadcastReceiver() {
-    // This might not work on 8 and newer
+class StartBeerReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == Intent.ACTION_BOOT_COMPLETED) {
             Intent(context, NoLimitBeerService::class.java).also {
