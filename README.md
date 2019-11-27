@@ -6,11 +6,10 @@
 * Detekt
 * ObjectBox vs Room (SQLlite)
 * Glide vs Picasso
-
+* Service Foreground/Background
 
 # Not implemented yet
 * Eventbus vs Broadcast messages
-* Service Foreground/Background
 * Kotlin Flow
 
 # Waiting
