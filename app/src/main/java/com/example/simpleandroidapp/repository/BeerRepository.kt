@@ -2,7 +2,6 @@ package com.example.simpleandroidapp.repository
 
 import com.example.simpleandroidapp.net.BeerFetcherNet
 import com.example.simpleandroidapp.repository.pojo.Beer
-import io.objectbox.Box
 import io.objectbox.BoxStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

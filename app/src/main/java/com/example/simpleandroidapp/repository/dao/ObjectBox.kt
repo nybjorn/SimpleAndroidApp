@@ -1,20 +1,16 @@
 package com.example.simpleandroidapp.repository.dao
 
-import android.app.Application
 import android.content.Context
 import com.example.simpleandroidapp.BuildConfig
-import com.example.simpleandroidapp.repository.pojo.Beer
 import com.example.simpleandroidapp.repository.pojo.MyObjectBox
 import io.objectbox.BoxStore
 import io.objectbox.android.AndroidObjectBrowser
-import io.objectbox.kotlin.boxFor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import timber.log.Timber
 
 val boxModule = module {
- //   single { ObjectBox.init(androidApplication()).boxFor(Beer::class.java) }
     single { ObjectBox.init(androidApplication()) }
 }
 
@@ -34,6 +30,4 @@ object ObjectBox {
         }
         return boxStore
     }
-
-//    @Convert(converter = StringListConverter::class.java, dbType = String::class.java)
 }

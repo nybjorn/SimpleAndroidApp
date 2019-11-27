@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleandroidapp.repository.BeerRepository
 import com.example.simpleandroidapp.repository.RepositoryResult
-import com.example.simpleandroidapp.repository.dao.ObjectBox
 import com.example.simpleandroidapp.repository.pojo.Beer
-import io.objectbox.Box
 import io.objectbox.BoxStore
 import io.objectbox.android.ObjectBoxLiveData
 import kotlinx.coroutines.launch
