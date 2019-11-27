@@ -28,4 +28,10 @@
             android:name="OneBeer"
             app:argType="com.example.simpleandroidapp.repository.pojo.Beer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/about_fragment"
+        android:name="com.example.simpleandroidapp.ui.about.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
 </navigation>
