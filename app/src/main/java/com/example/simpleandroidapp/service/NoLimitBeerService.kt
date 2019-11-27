@@ -55,7 +55,7 @@ class NoLimitBeerService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        val notification = createChannelWithNotification("Filling up", 0)
+        val notification = createChannelWithNotification(getString(R.string.filling_up), 0)
         startForeground(1, notification)
     }
 
@@ -86,10 +86,8 @@ class NoLimitBeerService : Service() {
                 launch(Dispatchers.IO) {
                     Timber.d("Looping the service")
                     val oneless = i - 1
-                    val beersOnTheWall = if (i > 0) "$i bottles of beer on the wall, $i bottles of beer.\n" +
-                            "Take one down and pass it around, $oneless bottles of beer on the wall."
-                    else "No more bottles of beer on the wall, no more bottles of beer.\n" +
-                        "Go to the store and buy some more, 99 bottles of beer on the wall."
+                    val beersOnTheWall = if (i > 0) getString(R.string.beers_on_the_wall, i, oneless)
+                    else getString(R.string.no_beers_on_the_wall)
                     val createNotification = createNotification(beersOnTheWall, i)
                     notificationManager.notify(1, createNotification)
                     EventBus.getDefault().post(EventMessage(beersOnTheWall))
