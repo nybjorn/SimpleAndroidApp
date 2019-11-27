@@ -13,14 +13,16 @@ import android.os.PowerManager
 import android.widget.Toast
 import com.example.simpleandroidapp.MainActivity
 import com.example.simpleandroidapp.R
+import com.example.simpleandroidapp.messaging.EventMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-class NoLimitBeer : Service() {
+class NoLimitBeerService : Service() {
     // Inspired by https://robertohuertas.com/2019/06/29/android_foreground_services/
     companion object {
         private const val MAX_BEERS_ON_THE_WALL = 99
@@ -83,12 +85,14 @@ class NoLimitBeer : Service() {
             while (isServiceStarted) {
                 launch(Dispatchers.IO) {
                     Timber.d("Looping the service")
-                    val beersOnTheWall = if (i > 0) "{$i} bottles of beer on the wall, {$i} bottles of beer.\n" +
-                            "Take one down and pass it around, {$i} bottles of beer on the wall."
+                    val oneless = i - 1
+                    val beersOnTheWall = if (i > 0) "$i bottles of beer on the wall, $i bottles of beer.\n" +
+                            "Take one down and pass it around, $oneless bottles of beer on the wall."
                     else "No more bottles of beer on the wall, no more bottles of beer.\n" +
                         "Go to the store and buy some more, 99 bottles of beer on the wall."
                     val createNotification = createNotification(beersOnTheWall, i)
                     notificationManager.notify(1, createNotification)
+                    EventBus.getDefault().post(EventMessage(beersOnTheWall))
                 }
                 i -= 1
                 if (i < 0) i = MAX_BEERS_ON_THE_WALL
@@ -101,7 +105,6 @@ class NoLimitBeer : Service() {
     private fun stopService() {
         Timber.d("Stopping the foreground service")
         Toast.makeText(this, "Service stopping", Toast.LENGTH_SHORT).show()
-
         wakeLock?.let {
             if (it.isHeld) {
                 it.release()

@@ -7,9 +7,9 @@
 * ObjectBox vs Room (SQLlite)
 * Glide vs Picasso
 * Service Foreground/Background
+* Eventbus vs Broadcast messages
 
 # Not implemented yet
-* Eventbus vs Broadcast messages
 * Kotlin Flow
 
 # Waiting

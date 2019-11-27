@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.example.simpleandroidapp.service.NoLimitBeer
+import com.example.simpleandroidapp.service.NoLimitBeerService
 import com.example.simpleandroidapp.service.ServiceAction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startService() {
-        Intent(this, NoLimitBeer::class.java).also {
+        Intent(this, NoLimitBeerService::class.java).also {
             it.action = ServiceAction.START.name
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 Timber.d("Starting the service in >=26 Mode")

@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
         <service
-            android:name=".service.NoLimitBeer"
+            android:name=".service.NoLimitBeerService"
             android:enabled="true"
             android:exported="false">
         </service>

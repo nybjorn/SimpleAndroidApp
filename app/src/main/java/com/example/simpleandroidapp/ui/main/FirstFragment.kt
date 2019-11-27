@@ -7,6 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.simpleandroidapp.R
+import com.example.simpleandroidapp.messaging.EventMessage
+import kotlinx.android.synthetic.main.fragment_first.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class FirstFragment : Fragment() {
 
@@ -18,6 +23,21 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_first, container, false)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: EventMessage) {
+        message.text = event.beerMessage
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStart()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
