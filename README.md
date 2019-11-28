@@ -8,6 +8,7 @@
 * Glide vs Picasso
 * Service Foreground/Background
 * Eventbus vs Broadcast messages
+* Lottie vs Android Animations (AVD). 
 
 # Not implemented yet
 * Kotlin Flow
