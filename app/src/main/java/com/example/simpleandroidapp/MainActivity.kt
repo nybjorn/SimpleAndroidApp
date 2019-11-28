@@ -8,7 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.*
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import com.example.simpleandroidapp.service.NoLimitBeerService
 import com.example.simpleandroidapp.service.ServiceAction
 import com.google.android.material.bottomnavigation.BottomNavigationView
