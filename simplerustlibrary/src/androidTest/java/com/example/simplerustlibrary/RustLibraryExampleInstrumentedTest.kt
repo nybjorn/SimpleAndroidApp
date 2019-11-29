@@ -14,11 +14,22 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class RustLibraryExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.simplerustlibrary.test", appContext.packageName)
+    }
+
+    @Test
+    fun loadLibrary() {
+        assertTrue(loadRustLib())
+    }
+
+    @Test
+    fun helloFromRust() {
+        loadLibrary()
+        assertEquals("Hello from Rust: Johan", hello("Johan"))
     }
 }

@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.mozilla.rust-android-gradle.rust-android'
+
 android {
     compileSdkVersion 29
 
@@ -26,14 +29,15 @@ android {
 cargo {
     module = "../rust"
     targets = [
-         //   "arm",
-            "arm64",
-         //   "x86",
-            "x86_64",
-            "darwin"
+    //        "arm",
+            "arm64", // rustup target add aarch64-linux-android
+            "x86", //rustup target add i686-linux-android
+            "x86_64", // rustup target add x86_64-linux-android
+            "darwin" // rustup target add x86_64-apple-darwin
     ]
     libname = "simplerust"
-    prebuiltToolchains = true
+ //   prebuiltToolchains = true
+    profile = 'release'
 }
 
 

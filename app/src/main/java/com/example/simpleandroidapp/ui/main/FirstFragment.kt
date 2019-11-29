@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.messaging.EventMessage
+import com.example.simplerustlibrary.hello
+import com.example.simplerustlibrary.loadRustLib
 import kotlinx.android.synthetic.main.fragment_first.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -28,6 +30,12 @@ class FirstFragment : Fragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: EventMessage) {
         message.text = event.beerMessage
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        rust_message.text = if (loadRustLib()) hello("Rust")
+        else "Unable to load required library"
     }
 
     override fun onStart() {

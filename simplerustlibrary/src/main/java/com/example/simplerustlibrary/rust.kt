@@ -1,8 +1,10 @@
 package com.example.simplerustlibrary
 
 external fun hello(to: String): String
-external fun helloDirect(to: String): String
 
-fun loadRustLib() {
-    System.loadLibrary("libsimplerust")
+fun loadRustLib(): Boolean = try {
+    System.loadLibrary("simplerust")
+    true
+} catch (e: Throwable) {
+    false
 }
