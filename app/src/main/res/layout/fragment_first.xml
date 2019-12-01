@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.FirstFragment">
 
+
+    <ImageView
+        android:id="@+id/rust_mandel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/homage_blank_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rust_message"
+        android:src="@drawable/ic_beer"
+        />
+
     <TextView
         android:id="@+id/rust_message"
         android:layout_width="wrap_content"

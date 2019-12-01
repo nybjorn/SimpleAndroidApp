@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Björn Nyberg"]
 
 [dependencies]
-jni = "0.5.2"
+jni = "0.14.0"
 
 [lib]
 crate_type = ["staticlib", "dylib"]

@@ -32,4 +32,20 @@ class RustLibraryExampleInstrumentedTest {
         loadLibrary()
         assertEquals("Hello from Rust: Johan", hello("Johan"))
     }
+
+
+    @Test
+    fun mandelKotlin() {
+        val mandelBrot = mandelbrotKotlin(100, 800)
+        println("mandelBrot(800, 800) = $mandelBrot")
+    }
+
+    @Test
+    fun mandelRust() {
+        loadLibrary()
+        val mandelBrot = mandelrust(100, 800)
+        println("mandelBrot(800, 800) = $mandelBrot")
+    }
+
+
 }

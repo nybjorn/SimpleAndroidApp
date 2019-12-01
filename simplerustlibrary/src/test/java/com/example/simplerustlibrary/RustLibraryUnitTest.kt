@@ -1,8 +1,7 @@
 package com.example.simplerustlibrary
 
+import org.junit.Assert.assertFalse
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -14,6 +13,16 @@ class RustLibraryUnitTest {
     fun loadLibrary() {
         assertFalse(loadRustLib())
     }
+
+    @Test
+    fun testMandelRust() {
+        val currentDir = System.getProperty("user.dir")
+        System.load(currentDir + "/build/rustJniLibs/desktop/darwin/libsimplerust.dylib")
+        println("hello(\"hello\") = ${hello("hello")}")
+        mandelrust(800, 800)
+    }
+
+
 
 
 }
