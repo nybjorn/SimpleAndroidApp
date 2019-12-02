@@ -6,5 +6,10 @@ authors = ["Björn Nyberg"]
 [dependencies]
 jni = "0.14.0"
 
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+
 [lib]
 crate_type = ["staticlib", "dylib"]
