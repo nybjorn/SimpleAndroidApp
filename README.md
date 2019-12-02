@@ -9,6 +9,7 @@
 * Service Foreground/Background
 * Eventbus vs Broadcast messages
 * Lottie vs Android Animations (AVD). 
+* Rust vs C/C++ as native code
 
 # Not implemented yet
 * Kotlin Flow
