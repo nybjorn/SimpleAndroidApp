@@ -12,4 +12,11 @@ codegen-units = 1
 opt-level = 3
 
 [lib]
-crate_type = ["staticlib", "dylib"]
+crate_type = ["rlib", "staticlib", "dylib"]
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "mandel_benchmark"
+harness = false
