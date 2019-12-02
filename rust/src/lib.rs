@@ -51,7 +51,7 @@ pub extern "C" fn Java_com_example_simplerustlibrary_RustKt_mandelrust(
 
 pub fn mandelbrot(width: i32, height: i32) -> Vec<i32>{
     let mut pixels = vec![0; (width * height) as usize];
-    let mut large_n: i32;
+
     for x in 0..width - 1 {
         for y in 0..height - 1 {
             let mut a = map_over(x as f32, 0.0, width as f32, -2.0, 2.0);
@@ -59,6 +59,7 @@ pub fn mandelbrot(width: i32, height: i32) -> Vec<i32>{
             let large_a = a;
             let large_b = b;
             let max_iterations = 1000;
+            let mut large_n: i32 = 1000;
             for n in 0..max_iterations {
                 let ab = a * a - b * b;
                 let bb = 2.0 * a * b;
@@ -68,17 +69,17 @@ pub fn mandelbrot(width: i32, height: i32) -> Vec<i32>{
                 if (a * a + b * b) > 4 as f32 {
                     break;
                 }
-                let pixel = x + y * width;
-                let brightness: i32;
-                if large_n == max_iterations {
-                    brightness = 0;
-                } else {
-                    brightness = map_over((large_n as f32 / max_iterations as f32).sqrt(), 0.0, 1.0, 0.0, 255.0) as i32;
-                }
-
-                let color = color(255, brightness, brightness * 2, brightness);
-                pixels[pixel as usize] = color;
             }
+            let pixel = x + y * width;
+            let brightness: i32;
+            if large_n == max_iterations {
+                brightness = 0;
+            } else {
+                brightness = map_over((large_n as f32 / max_iterations as f32).sqrt(), 0.0, 1.0, 0.0, 255.0) as i32;
+            }
+
+            let color = color(255, brightness, brightness * 2, brightness);
+            pixels[pixel as usize] = color;
         }
     }
     return pixels;
