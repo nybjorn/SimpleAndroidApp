@@ -4,7 +4,7 @@ use jni::JNIEnv;
 use jni::objects::{JClass, JString};
 use jni::sys::jstring;
 use jni::sys::jint;
-//use jni::sys::jintArray;
+use jni::sys::jintArray;
 
 /*
 pub extern "system"
@@ -34,10 +34,10 @@ pub extern "C" fn Java_com_example_simplerustlibrary_RustKt_mandelrust(
     _: JClass,
     j_width: jint,
     j_height: jint
-) -> jstring {
+) -> jintArray {
     let width = j_width as i32;
     let height = j_height as i32;
-    let mut pixels : Vec<jint> = vec![0; (width * height) as usize];
+    let mut pixels = vec![0; (width * height) as usize];
     let mut large_n: i32;
     for x in 0..width - 1 {
         for y in 0..height - 1 {
@@ -52,7 +52,7 @@ pub extern "C" fn Java_com_example_simplerustlibrary_RustKt_mandelrust(
                 a = ab + large_a;
                 b = bb + large_b;
                 large_n = n;
-                if a * a + b * b > 4 as f32 {
+                if (a * a + b * b) > 4 as f32 {
                     break;
                 }
                 let pixel = x + y * width;
@@ -71,16 +71,12 @@ pub extern "C" fn Java_com_example_simplerustlibrary_RustKt_mandelrust(
     let out_array = env
         .new_int_array(pixels.len() as i32)
         .expect("Couldn't create a Java int array!");
- /*   env
-        .set_int_array_region(out_array, pixels.len() as i32, &pixels)
+    env
+        .set_int_array_region(out_array, 0, &pixels)
         .expect("Couldn't fill a Java int array!");
 
+
     out_array
-    */
-    let output = env
-        .new_string(format!("Hello from Rust: {}", "Test"))
-        .expect("Couldn't create a Java string!");
-    output.into_inner()
 }
 
 fn color(alpha: i32, red: i32, green: i32, blue: i32) -> i32 {

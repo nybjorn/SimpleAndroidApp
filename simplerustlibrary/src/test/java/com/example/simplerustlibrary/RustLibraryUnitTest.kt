@@ -1,5 +1,6 @@
 package com.example.simplerustlibrary
 
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Test
 
@@ -18,8 +19,8 @@ class RustLibraryUnitTest {
     fun testMandelRust() {
         val currentDir = System.getProperty("user.dir")
         System.load(currentDir + "/build/rustJniLibs/desktop/darwin/libsimplerust.dylib")
-        println("hello(\"hello\") = ${hello("hello")}")
-        mandelrust(800, 800)
+        val mandelrust = mandelrust(800, 800)
+        assertEquals(800*800, mandelrust.size)
     }
 
 

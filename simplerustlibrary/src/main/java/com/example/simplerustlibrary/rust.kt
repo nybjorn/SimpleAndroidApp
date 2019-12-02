@@ -5,7 +5,7 @@ import android.graphics.Color
 import kotlin.math.sqrt
 
 external fun hello(to: String): String
-external fun mandelrust(width: Int, height: Int): String
+external fun mandelrust(width: Int, height: Int): IntArray
 /*
 class mandel {
 companion object {
@@ -16,71 +16,89 @@ companion object {
 fun loadRustLib(): Boolean = try {
     System.loadLibrary("simplerust")
     true
-} catch (e: Throwable) {
+} catch (e: LinkageError) {
     false
 }
 
 fun map(n: Float, start1: Float, end1: Float, start2: Float, end2: Float) =
     ((n - start1) / (end1 - start1)) * (end2 - start2) + start2
 
+private const val MAX_ITERATIONS = 1000
+private const val MAX_COLOR = 255
+private const val POSITIVE_MANDEL_SPACE = 2F
+private const val NEGATIVE_MANDEL_SPACE = -POSITIVE_MANDEL_SPACE
+private const val NO_BETTER_SOLUTION = 4
+
+@SuppressWarnings("NestedBlockDepth")
 fun mandelbrotKotlin(width: Int, height: Int): Bitmap {
     var bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-    var N = 0
+    var largeN = 0
     for (x in 0 until width - 1) {
         for (y in 0 until height - 1) {
-            var a = map(x.toFloat(), 0F, width.toFloat(), -2F, 2F)
-            var b = map(y.toFloat(), 0F, height.toFloat(), -2F, 2F)
-            val A = a
-            val B = b
-            val maxM = 1000
-            for (n in 0..maxM) {
+            var a = map(x.toFloat(), 0F, width.toFloat(), NEGATIVE_MANDEL_SPACE, POSITIVE_MANDEL_SPACE)
+            var b = map(y.toFloat(), 0F, height.toFloat(), NEGATIVE_MANDEL_SPACE, POSITIVE_MANDEL_SPACE)
+            val largeA = a
+            val largeB = b
+            val maxIterations = MAX_ITERATIONS
+            for (n in 0..maxIterations) {
                 val ab = a * a - b * b
                 val bb = 2 * a * b
-                a = ab + A
-                b = bb + B
-                N = n
-                if (a * a + b * b > 4) break
+                a = ab + largeA
+                b = bb + largeB
+                largeN = n
+                if (a * a + b * b > NO_BETTER_SOLUTION) break
             }
-            var brightness = if (N==maxM) 0 else  map(sqrt(N.toFloat() / maxM.toFloat()), 0F, 1F, 0F, 255F).toInt()
-
-            val color = Color.argb(255, brightness, brightness*2, brightness)
+            var brightness =
+                if (largeN == maxIterations) {
+                  0
+                } else {
+                    map(
+                        sqrt(largeN.toFloat() / maxIterations.toFloat()),
+                        0F,
+                        1F,
+                        0F,
+                        MAX_COLOR.toFloat()
+                    ).toInt()
+                }
+            val color = Color.argb(MAX_COLOR, brightness, brightness*2, brightness)
 
             bitmap.setPixel(x, y, color)
-            //  pixels[pix + 1] = brightness
-          //  pixels[pix + 2] = brightness * 2
-          //  pixels[pix + 3] = 255
         }
     }
     return bitmap
 }
-
-fun mandelbrotKotlin2(width: Int, height: Int): IntArray{
+@SuppressWarnings("NestedBlockDepth")
+fun mandelbrotKotlin2(width: Int, height: Int): IntArray {
     val pixels = IntArray(width * height) { Color.GREEN }
     var largeN = 0
     for (x in 0 until width - 1) {
         for (y in 0 until height - 1) {
-            var a = map(x.toFloat(), 0F, width.toFloat(), -2F, 2F)
-            var b = map(y.toFloat(), 0F, height.toFloat(), -2F, 2F)
-            val A = a
-            val B = b
-            val maxM = 1000
-            for (n in 0..maxM) {
+            var a = map(x.toFloat(), 0F, width.toFloat(), NEGATIVE_MANDEL_SPACE, POSITIVE_MANDEL_SPACE)
+            var b = map(y.toFloat(), 0F, height.toFloat(), NEGATIVE_MANDEL_SPACE, POSITIVE_MANDEL_SPACE)
+            val largeA = a
+            val largeB = b
+            val maxIterations = MAX_ITERATIONS
+            for (n in 0..maxIterations) {
                 val ab = a * a - b * b
                 val bb = 2 * a * b
-                a = ab + A
-                b = bb + B
+                a = ab + largeA
+                b = bb + largeB
                 largeN = n
-                if (a * a + b * b > 4) break
+                if (a * a + b * b > NO_BETTER_SOLUTION) break
             }
-            val pix = (x + y * width) //* 4
-            val brightness = if (largeN == maxM) 0  else map(sqrt(largeN.toFloat() / maxM.toFloat()), 0F, 1F, 0F, 255F).toInt()
+            val pix = (x + y * width)
+            val brightness = if (largeN == maxIterations) { 0 } else {
+                map(
+                    sqrt(largeN.toFloat() / maxIterations.toFloat()),
+                    0F,
+                    1F,
+                    0F,
+                    MAX_COLOR.toFloat()
+                ).toInt()
+            }
+            val color = Color.argb(MAX_COLOR, brightness, brightness*2, brightness)
 
-            val color = Color.argb(255, brightness, brightness*2, brightness)
-
-           // bitmap.setPixel(x, y, color)
             pixels[pix] = color
-            //  pixels[pix + 2] = brightness * 2
-            //  pixels[pix + 3] = 255
         }
     }
     return pixels
