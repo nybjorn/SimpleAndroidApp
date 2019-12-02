@@ -37,6 +37,19 @@ pub extern "C" fn Java_com_example_simplerustlibrary_RustKt_mandelrust(
 ) -> jintArray {
     let width = j_width as i32;
     let height = j_height as i32;
+    let pixels = mandelbrot(width, height);
+    let out_array = env
+        .new_int_array(pixels.len() as i32)
+        .expect("Couldn't create a Java int array!");
+    env
+        .set_int_array_region(out_array, 0, &pixels)
+        .expect("Couldn't fill a Java int array!");
+
+
+    out_array
+}
+
+pub fn mandelbrot(width: i32, height: i32) -> Vec<i32>{
     let mut pixels = vec![0; (width * height) as usize];
     let mut large_n: i32;
     for x in 0..width - 1 {
@@ -68,15 +81,7 @@ pub extern "C" fn Java_com_example_simplerustlibrary_RustKt_mandelrust(
             }
         }
     }
-    let out_array = env
-        .new_int_array(pixels.len() as i32)
-        .expect("Couldn't create a Java int array!");
-    env
-        .set_int_array_region(out_array, 0, &pixels)
-        .expect("Couldn't fill a Java int array!");
-
-
-    out_array
+    return pixels;
 }
 
 fn color(alpha: i32, red: i32, green: i32, blue: i32) -> i32 {
@@ -87,4 +92,24 @@ fn map_over(n: f32, start1: f32, end1: f32, start2: f32, end2: f32) -> f32 {
     ((n - start1) / (end1 - start1)) * (end2 - start2) + start2
 }
 
+#[cfg(test)]
+mod tests {
+    // Note this useful idiom: importing names from outer (for mod tests) scope.
+    use super::*;
+
+    #[test]
+    fn test_map_over() {
+        assert_eq!(map_over(14.0, 0.0, 20.0, 0.0, 255.0 ), 178.5);
+    }
+
+    #[test]
+    fn test_color() {
+        assert_eq!(color(255, 0, 0, 0 ), -16777216);
+    }
+
+    #[test]
+    fn test_mandelbrot() {
+        assert_eq!(mandelbrot(255, 255).len(), 65025);
+    }
+}
 
