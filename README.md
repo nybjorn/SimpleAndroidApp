@@ -6,7 +6,7 @@
 * Detekt
 * ObjectBox vs Room (SQLlite)
 * Glide vs Picasso
-* Service Foreground/Background
+* Service Foreground/Background/Intent
 * Eventbus vs Broadcast messages
 * Lottie vs Android Animations (AVD). 
 * Rust vs C/C++ as native code
@@ -16,3 +16,6 @@
 
 # Waiting
 * Renderscript
+
+# Investigate
+* Flipper vs Stetho
