@@ -14,6 +14,7 @@
 * Eventbus vs Broadcast messages
 * Lottie vs Android Animations (AVD). 
 * Rust vs C/C++ as native code
+* Flipper (multiplatform, native client, plugins) vs Stetho (Android, Chrome only, currently more functionality)
 
 # Not implemented yet
 * Kotlin Flow
@@ -22,4 +23,4 @@
 * Renderscript
 
 # Investigate
-* Flipper vs Stetho
+* Application.ActivityLifecycleCallbacks  or FragmentManager.FragmentLifecycleCallbacks 
