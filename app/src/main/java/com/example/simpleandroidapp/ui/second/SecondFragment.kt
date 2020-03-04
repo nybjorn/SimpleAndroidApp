@@ -35,7 +35,7 @@ class SecondFragment : Fragment() {
         viewModel.fetchBeers()
 
         if (Random.nextBoolean()) {
-            viewModel.fetchBeerLiveData().observe(this, Observer<List<Beer>>() {
+            viewModel.fetchBeerLiveData().observe(viewLifecycleOwner, Observer<List<Beer>>() {
                 val arrayOf = it.map { it.name }
                 beer_progress.visibility = View.GONE
                 val adapter = ArrayAdapter(
@@ -54,7 +54,7 @@ class SecondFragment : Fragment() {
             })
         } else {
 
-            viewModel.getBeers().observe(this, Observer<RepositoryResult<List<Beer>>> {
+            viewModel.getBeers().observe(viewLifecycleOwner, Observer<RepositoryResult<List<Beer>>> {
                 when (it) {
                     is RepositoryResult.Success -> {
                         beer_progress.visibility = View.GONE
