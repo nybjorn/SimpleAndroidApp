@@ -10,12 +10,12 @@ apply plugin: 'kotlin-kapt' // For Kotlin, explicitly apply the kapt plugin (app
 apply plugin: 'io.objectbox' // Apply last.
 
 android {
-    compileSdkVersion "android-R"
+    compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.simpleandroidapp"
         minSdkVersion 21
-        targetSdkVersion "R"
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -68,8 +68,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
     // Net
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
 
     // Stetho
     implementation 'com.facebook.stetho:stetho:1.5.1'
@@ -78,27 +78,27 @@ dependencies {
     implementation "com.jakewharton.timber:timber:4.7.1"
 
     // Koin
-    implementation "org.koin:koin-android:2.0.1"
-    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
-    implementation "org.koin:koin-core:2.0.1"
+    implementation "org.koin:koin-android:2.1.1"
+    implementation "org.koin:koin-androidx-viewmodel:2.1.1"
+    implementation "org.koin:koin-core:2.1.1"
 
     // ObjectBox
-    implementation "io.objectbox:objectbox-kotlin:2.4.1"
+    implementation "io.objectbox:objectbox-kotlin:2.5.1"
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Eventbus
-    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'org.greenrobot:eventbus:3.2.0'
 
     //Lottie
-    implementation 'com.airbnb.android:lottie:3.2.2'
+    implementation 'com.airbnb.android:lottie:3.4.0'
 
     // Rust library
     implementation project(':simplerustlibrary')
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testImplementation 'org.koin:koin-test:2.0.1'
