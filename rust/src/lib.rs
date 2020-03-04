@@ -52,14 +52,15 @@ pub extern "C" fn Java_com_example_simplerustlibrary_RustKt_mandelrust(
 pub fn mandelbrot(width: i32, height: i32) -> Vec<i32>{
     let mut pixels = vec![0; (width * height) as usize];
 
+    let max_iterations = 1000;
+    let mut large_n: i32 = 0;
     for x in 0..width - 1 {
         for y in 0..height - 1 {
             let mut a = map_over(x as f32, 0.0, width as f32, -2.0, 2.0);
             let mut b = map_over(y as f32, 0.0, height as f32, -2.0, 2.0);
             let large_a = a;
             let large_b = b;
-            let max_iterations = 1000;
-            let mut large_n: i32 = 1000;
+
             for n in 0..max_iterations {
                 let ab = a * a - b * b;
                 let bb = 2.0 * a * b;
