@@ -61,7 +61,7 @@ pub fn mandelbrot(width: i32, height: i32) -> Vec<i32>{
             let large_a = a;
             let large_b = b;
 
-            for n in 0..max_iterations {
+            for n in 0..max_iterations+1 {
                 let ab = a * a - b * b;
                 let bb = 2.0 * a * b;
                 a = ab + large_a;
