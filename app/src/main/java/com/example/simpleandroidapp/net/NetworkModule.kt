@@ -12,19 +12,30 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
     factory { provideBeers(get()) }
+    single { provideOkHttpClient(get()) }
     single { provideRetroFit(get()) }
+}
+
+fun provideOkHttpClient(context: Application): OkHttpClient {
+    return if(BuildConfig.DEBUG) {
+        OkHttpClient.Builder()
+            .addNetworkInterceptor(
+                FlipperOkhttpInterceptor(
+                    AndroidFlipperClient.getInstance(context).getPlugin(NetworkFlipperPlugin.ID)
+                )
+            )
+            .build()
+    } else {
+        OkHttpClient()
+    }
+
 }
 
 fun provideBeers(retrofit: Retrofit): BeerFetcherNet {
     return retrofit.create(BeerFetcherNet::class.java)
 }
 
-fun provideRetroFit(context: Application): Retrofit {
-    val okHttpClient = OkHttpClient.Builder()
-        .addNetworkInterceptor(
-            FlipperOkhttpInterceptor(AndroidFlipperClient.getInstance(context).getPlugin(NetworkFlipperPlugin.ID))
-        )
-    .build()
+fun provideRetroFit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BuildConfig.BEER_API_URL)
         .addConverterFactory(GsonConverterFactory.create())
