@@ -17,7 +17,7 @@ val networkModule = module {
 }
 
 fun provideOkHttpClient(context: Application): OkHttpClient {
-    return if(BuildConfig.DEBUG) {
+    return if (BuildConfig.DEBUG) {
         OkHttpClient.Builder()
             .addNetworkInterceptor(
                 FlipperOkhttpInterceptor(
@@ -28,7 +28,6 @@ fun provideOkHttpClient(context: Application): OkHttpClient {
     } else {
         OkHttpClient()
     }
-
 }
 
 fun provideBeers(retrofit: Retrofit): BeerFetcherNet {
