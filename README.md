@@ -28,3 +28,4 @@
 * Hilt
 * Compose
 * Paging 3
+* Camera X
