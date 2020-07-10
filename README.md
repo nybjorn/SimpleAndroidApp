@@ -1,6 +1,6 @@
 # SimpleAndroidApp
 # Discussion
-* Koin vs Dagger
+* Koin vs Dagger (Hilt)
 * Retrofit vs Ktor client
 * Coroutines vs RxKotlin
 * Detekt
@@ -23,4 +23,8 @@
 * Renderscript
 
 # Investigate
-* Application.ActivityLifecycleCallbacks  or FragmentManager.FragmentLifecycleCallbacks 
+* Application.ActivityLifecycleCallbacks  or FragmentManager.FragmentLifecycleCallbacks
+## Android 11
+* Hilt
+* Compose
+* Paging 3
