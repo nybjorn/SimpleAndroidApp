@@ -39,7 +39,7 @@ class SecondFragment : Fragment() {
                 val arrayOf = it.map { it.name }
                 beer_progress.visibility = View.GONE
                 val adapter = ArrayAdapter(
-                    context!!,
+                    requireContext(),
                     android.R.layout.simple_list_item_1,
                     android.R.id.text1,
                     arrayOf
@@ -60,7 +60,7 @@ class SecondFragment : Fragment() {
                         beer_progress.visibility = View.GONE
                         val arrayOf = it.data.map { it.name }
                         val adapter = ArrayAdapter(
-                            context!!,
+                            requireContext(),
                             android.R.layout.simple_list_item_1,
                             android.R.id.text1,
                             arrayOf
