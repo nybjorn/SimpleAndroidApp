@@ -60,7 +60,7 @@ fun mandelbrotKotlin(width: Int, height: Int): Bitmap {
                         MAX_COLOR.toFloat()
                     ).toInt()
                 }
-            val color = Color.argb(MAX_COLOR, brightness, brightness*2, brightness)
+            val color = Color.argb(MAX_COLOR, brightness, brightness * 2, brightness)
 
             bitmap.setPixel(x, y, color)
         }
@@ -96,7 +96,7 @@ fun mandelbrotKotlin2(width: Int, height: Int): IntArray {
                     MAX_COLOR.toFloat()
                 ).toInt()
             }
-            val color = Color.argb(MAX_COLOR, brightness, brightness*2, brightness)
+            val color = Color.argb(MAX_COLOR, brightness, brightness * 2, brightness)
 
             pixels[pix] = color
         }
