@@ -11,7 +11,6 @@ import java.lang.Exception
 import javax.inject.Inject
 import kotlin.random.Random
 
-
 @Suppress("MagicNumber")
 class BeerRepository @Inject constructor(private val beerWebService: BeerFetcherNet, val objectBox: BoxStore) {
     /*
