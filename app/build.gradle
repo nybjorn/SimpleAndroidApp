@@ -33,6 +33,15 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion "0.1.0-dev13"
+    }
+
     buildTypes {
 
         release {
@@ -109,6 +118,12 @@ dependencies {
 
     // Rust library
     implementation project(':simplerustlibrary')
+
+    // Compose
+    implementation 'androidx.ui:ui-core:0.1.0-dev13'
+    implementation 'androidx.ui:ui-tooling:0.1.0-dev13'
+    implementation 'androidx.ui:ui-layout:0.1.0-dev13'
+    implementation 'androidx.ui:ui-material:0.1.0-dev13'
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -25,7 +25,7 @@
 # Investigate
 * Application.ActivityLifecycleCallbacks  or FragmentManager.FragmentLifecycleCallbacks
 ## Android 11
-* Compose
+* Compose, only works in Canery Android Studio which has problems compiling the project.
 * Paging 3
 * CameraX
 * ActivityResultContract
