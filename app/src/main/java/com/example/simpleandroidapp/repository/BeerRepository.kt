@@ -7,14 +7,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.koin.dsl.module
 import java.lang.Exception
+import javax.inject.Inject
 import kotlin.random.Random
 
-val beerModule = module { factory { BeerRepository(get(), get()) } }
 
 @Suppress("MagicNumber")
-class BeerRepository(private val beerWebService: BeerFetcherNet, val objectBox: BoxStore) {
+class BeerRepository @Inject constructor(private val beerWebService: BeerFetcherNet, val objectBox: BoxStore) {
     /*
     val BASE_URL = "https://api.punkapi.com/"
 

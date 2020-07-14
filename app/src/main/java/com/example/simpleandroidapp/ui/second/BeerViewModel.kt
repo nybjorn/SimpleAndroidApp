@@ -1,6 +1,9 @@
 package com.example.simpleandroidapp.ui.second
 
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simpleandroidapp.repository.BeerRepository
@@ -9,13 +12,12 @@ import com.example.simpleandroidapp.repository.pojo.Beer
 import io.objectbox.BoxStore
 import io.objectbox.android.ObjectBoxLiveData
 import kotlinx.coroutines.launch
-import org.koin.dsl.module
 
-val beerViewModule = module {
-    factory { BeerViewModel(get(), get()) }
-}
-
-class BeerViewModel(val beerRepository: BeerRepository, val objectBox: BoxStore) : ViewModel() {
+class BeerViewModel @ViewModelInject constructor(
+    private val beerRepository: BeerRepository,
+    private val objectBox: BoxStore,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
     private val beers = MutableLiveData<RepositoryResult<List<Beer>>>()
 
     private var beerLiveData: ObjectBoxLiveData<Beer>? = null
