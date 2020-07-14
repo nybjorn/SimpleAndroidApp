@@ -14,8 +14,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.simpleandroidapp.service.NoLimitBeerService
 import com.example.simpleandroidapp.service.ServiceAction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController

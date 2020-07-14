@@ -6,19 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.example.simpleandroidapp.R
 import com.example.simpleandroidapp.repository.RepositoryResult
 import com.example.simpleandroidapp.repository.pojo.Beer
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_second.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.random.Random
 
+@AndroidEntryPoint
 class SecondFragment : Fragment() {
 
-    private val viewModel: BeerViewModel by viewModel()
+    private val viewModel: BeerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
