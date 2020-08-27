@@ -5,7 +5,7 @@
 * Coroutines vs RxKotlin
 * Detekt
 * ObjectBox vs Room (SQLlite)
-* Glide vs Picasso
+* Coil, Glide vs Picasso
 * Service
     https://developer.android.com/guide/background
     ** Foreground
@@ -24,6 +24,7 @@
 
 # Investigate
 * Application.ActivityLifecycleCallbacks  or FragmentManager.FragmentLifecycleCallbacks
+* Coil
 ## Android 11
 * Compose
 * Paging 3
