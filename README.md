@@ -26,7 +26,7 @@
 * Application.ActivityLifecycleCallbacks  or FragmentManager.FragmentLifecycleCallbacks
 * Coil
 ## Android 11
-* Compose
+* Compose, see branch compose
 * Paging 3
 * CameraX
 * ActivityResultContract
