@@ -18,10 +18,10 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        SoLoader.init(this, false)
+       SoLoader.init(this, false)
 
         if (BuildConfig.DEBUG) {
-            if (FlipperUtils.shouldEnableFlipper(this)) {
+         if (FlipperUtils.shouldEnableFlipper(this)) {
                 val client: FlipperClient = AndroidFlipperClient.getInstance(this)
                 client.addPlugin(NetworkFlipperPlugin())
                 client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
