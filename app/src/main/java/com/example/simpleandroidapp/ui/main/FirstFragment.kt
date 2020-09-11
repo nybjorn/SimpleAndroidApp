@@ -34,6 +34,7 @@ class FirstFragment : Fragment() {
         message.text = event.beerMessage
     }
 
+    @SuppressWarnings("MagicNumber")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var message: String
