@@ -18,7 +18,8 @@ class StringJsonConverter : PropertyConverter<List<String>, String?> {
                 emptyList()
             } else {
                 Gson().fromJson(
-                    databaseValue, object : TypeToken<List<String>>() {}.type
+                    databaseValue,
+                    object : TypeToken<List<String>>() {}.type
                 )
             }
         }

@@ -27,7 +27,7 @@ class NoLimitBeerService : Service() {
     companion object {
         private const val MAX_BEERS_ON_THE_WALL = 99
         private const val LET_IT_SINK_IN = 2L
-        private val NOTIFICATION_CHANNEL_ID = "Simple Android App channel"
+        private const val NOTIFICATION_CHANNEL_ID = "Simple Android App channel"
     }
 
     private var wakeLock: PowerManager.WakeLock? = null
